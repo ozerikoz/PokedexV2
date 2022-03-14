@@ -1,14 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedexv2/Static/pokemon_colors.dart';
 import 'package:pokedexv2/constants/pokemon_constants.dart';
-import 'package:pokedexv2/models/pokemon_page_model.dart';
 import 'package:pokedexv2/Static/text_styles.dart';
 import 'package:pokedexv2/models/pokemon_summary_model.dart';
-import 'package:pokedexv2/util/text_util.dart';
+import 'package:pokedexv2/utils/text_utils.dart';
 
 class HomePageComponents {
   Widget homeSearchBar(BuildContext context, FocusNode focusNode) {
@@ -72,7 +69,7 @@ class HomePageComponents {
               Padding(
                 padding: EdgeInsets.only(left: 5),
                 child: Text(
-                  TextUtil().textCapitalize(summaryTypes[i]),
+                  TextUtils().textCapitalize(summaryTypes[i]),
                   style: TextStyles().fontStyleRegular(12, Colors.white),
                 ),
               ),
@@ -109,7 +106,7 @@ class HomePageComponents {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: Text(
-                    TextUtil().textCapitalize(
+                    TextUtils().textCapitalize(
                       pokemon.name.toString(),
                     ),
                     strutStyle: StrutStyle(forceStrutHeight: true),
