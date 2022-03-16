@@ -1,15 +1,14 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:pokedexv2/global.dart';
 import 'package:pokedexv2/services/base.dart';
 
 class PokemonService extends PokemonServiceBase {
-  Future getPokemons(int offSet) async {
+  Future getPokemons(int offSet, int limit) async {
     Response response = await Dio().get(
-      baseUrl + "/pokemon",
+      PokemonServiceBase().apiUrl + "/pokemon",
       queryParameters: {
         "offset": offSet,
+        "limit": limit,
       },
     );
 
@@ -18,8 +17,9 @@ class PokemonService extends PokemonServiceBase {
     return jsonResponse;
   }
 
-  Future getPokeSpecie(String pokeSpecieUrl) async {
-    Response response = await Dio().get(pokeSpecieUrl);
+  Future getPokemonSpecie(int index) async {
+    Response response =
+        await Dio().get("https://pokeapi.co/api/v2/pokemon-species/$index");
 
     Map jsonResponse = json.decode(response.toString());
 
