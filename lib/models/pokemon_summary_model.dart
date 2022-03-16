@@ -1,4 +1,4 @@
-class PokemonSummary {
+class PokemonSummaryModel {
   late String number;
   late String name;
   late String imageUrl;
@@ -6,7 +6,7 @@ class PokemonSummary {
   late List<String> types;
   late String specie;
 
-  PokemonSummary({
+  PokemonSummaryModel({
     required this.number,
     required this.name,
     required this.imageUrl,
@@ -15,7 +15,7 @@ class PokemonSummary {
     required this.specie,
   });
 
-  PokemonSummary.fromJson(Map<String, dynamic> json) {
+  PokemonSummaryModel.fromJson(Map<String, dynamic> json) {
     number = json['number'];
     name = json['name'];
     imageUrl = json['imageUrl'];

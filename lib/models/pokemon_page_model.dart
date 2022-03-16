@@ -1,4 +1,4 @@
-class PokeInfo {
+class PokeInfoModel {
   List<Abilities>? abilities;
   int? baseExperience;
   List<Forms>? forms;
@@ -18,7 +18,7 @@ class PokeInfo {
   List<Types>? types;
   int? weight;
 
-  PokeInfo({
+  PokeInfoModel({
     this.abilities,
     this.baseExperience,
     this.forms,
@@ -39,7 +39,7 @@ class PokeInfo {
     this.weight,
   });
 
-  PokeInfo.fromJson(Map<String, dynamic> json) {
+  PokeInfoModel.fromJson(Map<String, dynamic> json) {
     abilities = (json['abilities'] as List?)
         ?.map((dynamic e) => Abilities.fromJson(e as Map<String, dynamic>))
         .toList();
