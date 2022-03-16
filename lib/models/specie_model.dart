@@ -1,5 +1,5 @@
-class SpecieInfo {
-  SpecieInfo({
+class PokemonSpecieModel {
+  PokemonSpecieModel({
     required this.baseHappiness,
     required this.captureRate,
     required this.color,
@@ -56,7 +56,7 @@ class SpecieInfo {
   late final Shape shape;
   late final List<Varieties> varieties;
 
-  SpecieInfo.fromJson(Map<String, dynamic> json) {
+  PokemonSpecieModel.fromJson(Map<String, dynamic> json) {
     baseHappiness = json['base_happiness'];
     captureRate = json['capture_rate'];
     color = Color.fromJson(json['color']);
