@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'package:pokedexv2/home_page.dart';
+import 'package:pokedexv2/routes/route_generator.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: HomePage(),
-  ));
+  runApp(
+    MaterialApp(
+      initialRoute: "/",
+      onGenerateRoute: RouteGenerator.generateRoute,
+    ),
+  );
 }
