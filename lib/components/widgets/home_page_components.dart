@@ -82,20 +82,23 @@ class HomePageComponents {
   }
 
   Widget pokemonCard({context, pokeInfo, index}) {
-    PokemonSummary pokemon = PokemonSummary.fromJson(pokeInfo);
-
-    return Stack(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(left: 30, right: 30, bottom: 10, top: 20),
-          padding: EdgeInsets.all(20),
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: PokemonColors()
-                .pokemonCardColor(type: pokemon.types[0].toLowerCase())!,
-          ),
-          child: Column(
+    PokemonSummaryModel pokemon = PokemonSummaryModel.fromJson(pokeInfo);
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, "pokemonPage", arguments: index);
+      },
+      child: Stack(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(left: 30, right: 30, bottom: 10, top: 20),
+            padding: EdgeInsets.all(20),
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: PokemonColors()
+                  .pokemonCardColor(type: pokemon.types[0].toLowerCase())!,
+            ),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -116,18 +119,20 @@ class HomePageComponents {
                 Row(
                   children: pokemonTypeButton(pokemon.types),
                 ),
-              ]),
-        ),
-        Positioned(
-          right: 40,
-          child: CachedNetworkImage(
-            imageUrl: pokemon.imageUrl,
-            width: 125,
-            placeholder: (context, url) => CircularProgressIndicator(),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+              ],
+            ),
           ),
-        ),
-      ],
+          Positioned(
+            right: 40,
+            child: CachedNetworkImage(
+              imageUrl: pokemon.imageUrl,
+              width: 125,
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
