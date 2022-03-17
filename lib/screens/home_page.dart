@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pokedexv2/components/widgets/home_page_components.dart';
+import 'package:pokedexv2/components/widgets/pokemon_card.dart';
+import 'package:pokedexv2/components/widgets/searchbar.dart';
 import 'package:pokedexv2/global.dart';
 import 'package:pokedexv2/Static/text_styles.dart';
 import 'package:pokedexv2/screens/splash_page.dart';
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     isLoading = true;
     fetchPokeList();
-    Future.delayed(Duration(milliseconds: 8700), () {
+    Future.delayed(const Duration(milliseconds: 8700), () {
       setState(() {
         isLoading = false;
       });
@@ -41,7 +42,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     List summaryData = await json.decode(jsonResponse);
 
     List<Map> pokeListData = [];
-
     for (int i = 0; i < summaryData.length; i++) {
       pokeListData.add(summaryData[i]);
     }
@@ -144,8 +144,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         left: 0,
                                         right: 0,
                                         top: 155,
-                                        child: HomePageComponents()
-                                            .homeSearchBar(context, focusNode),
+                                        child: SearchBar(focusNode: focusNode),
                                       ),
                                       Positioned(
                                         top: 10,
@@ -200,13 +199,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         builder: (context, AsyncSnapshot snapshot) {
                           if (snapshot.hasData) {
                             return ListView.builder(
+                              addAutomaticKeepAlives: true,
+                              cacheExtent: 148,
                               padding: EdgeInsets.zero,
                               itemExtent: 148,
                               physics: BouncingScrollPhysics(),
                               itemCount: snapshot.data.length,
                               itemBuilder: (context, index) {
-                                return HomePageComponents().pokemonCard(
-                                  context: context,
+                                return PokemonCard(
                                   pokeInfo: snapshot.data[index],
                                   index: index,
                                 );
