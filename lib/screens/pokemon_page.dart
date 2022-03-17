@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:pokedexv2/models/pokemon_model.dart';
 import 'package:pokedexv2/models/specie_model.dart';
 import 'package:pokedexv2/services/pokemon_infos.dart';
 
@@ -15,7 +16,9 @@ class _PokemonPageState extends State<PokemonPage>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   bool isLoading = false;
-  late PokemonSpecieModel pokemon;
+  late PokemonSpecieModel specieInfo;
+  late PokemonModel pokemonInfo;
+
   @override
   void initState() {
     getSpecieInfo();
@@ -28,9 +31,15 @@ class _PokemonPageState extends State<PokemonPage>
 
   void getSpecieInfo() async {
     isLoading = true;
-    final specieInfo =
+
+    Map<String, dynamic> specieResponse =
         await PokemonService().getPokemonSpecie(widget.index + 1);
-    pokemon = PokemonSpecieModel.fromJson(specieInfo);
+    specieInfo = PokemonSpecieModel.fromJson(specieResponse);
+
+    Map<String, dynamic> pokemonResponse =
+        await PokemonService().getPokemon(widget.index + 1);
+    pokemonInfo = PokemonModel.fromJson(pokemonResponse);
+
     setState(() {
       isLoading = false;
     });
@@ -99,12 +108,14 @@ class _PokemonPageState extends State<PokemonPage>
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(50)),
                   ),
-                  child: Text(pokemon.name),
+                  // child: Text(pokemon.name),
                 ),
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
             ),
           ]),
