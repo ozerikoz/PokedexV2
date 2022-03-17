@@ -1,3 +1,3 @@
 class PokemonServiceBase {
-  String apiUrl = "https://pokeapi.co/api/v2";
+  String apiUrl = "https://pokeapi.co/api/v2/";
 }
