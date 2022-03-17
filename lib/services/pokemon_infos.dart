@@ -19,15 +19,16 @@ class PokemonService extends PokemonServiceBase {
 
   Future getPokemonSpecie(int index) async {
     Response response =
-        await Dio().get("https://pokeapi.co/api/v2/pokemon-species/$index");
+        await Dio().get("${PokemonService().apiUrl}pokemon-species/$index");
 
     Map jsonResponse = json.decode(response.toString());
 
     return jsonResponse;
   }
 
-  Future getPokemon(String pokeUrl) async {
-    Response response = await Dio().get(pokeUrl);
+  Future getPokemon(int index) async {
+    Response response =
+        await Dio().get("${PokemonService().apiUrl}pokemon/$index");
 
     Map jsonResponse = json.decode(response.toString());
 
