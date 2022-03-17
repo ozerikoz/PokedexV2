@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     isLoading = true;
     fetchPokeList();
-    Future.delayed(const Duration(milliseconds: 8700), () {
+    Future.delayed(const Duration(milliseconds: 1600), () {
       setState(() {
         isLoading = false;
       });
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         SplashPage(),
         AnimatedOpacity(
           opacity: isLoading ? 0.0 : 1.0,
-          duration: Duration(milliseconds: 700),
+          duration: Duration(milliseconds: 1000),
           child: Scaffold(
             floatingActionButton: FloatingActionButton(onPressed: () {
               scrollController.animateTo(
@@ -199,7 +199,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         builder: (context, AsyncSnapshot snapshot) {
                           if (snapshot.hasData) {
                             return ListView.builder(
-                              addAutomaticKeepAlives: true,
                               cacheExtent: 148,
                               padding: EdgeInsets.zero,
                               itemExtent: 148,
