@@ -19,7 +19,7 @@ class PokemonTypeCard extends StatelessWidget {
       elevation: 2,
       margin: EdgeInsets.only(right: index == 0 ? 10 : 0),
       color: PokemonColors()
-          .pokemonTypeColor(type: pokemonTypes[index].toLowerCase())!,
+          .pokemonTypeColor(type: pokemonTypes[index].toLowerCase()),
       child: Padding(
         padding: EdgeInsets.all(4),
         child: Row(
