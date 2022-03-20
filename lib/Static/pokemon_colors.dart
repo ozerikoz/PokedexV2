@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PokemonColors {
-  Color? pokemonCardColor({required String type}) {
+  Color pokemonCardColor({required String type}) {
     switch (type) {
       case 'normal':
         return Color(0xffb7b8bc);
@@ -44,7 +44,7 @@ class PokemonColors {
     }
   }
 
-  Color? pokemonTypeColor({required String type}) {
+  Color pokemonTypeColor({required String type}) {
     switch (type) {
       case 'normal':
         return Color(0xffA0A1A5);

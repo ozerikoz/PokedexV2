@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexv2/Static/pokemon_colors.dart';
-import 'package:pokedexv2/components/pokemon_type_card.dart';
 import 'package:pokedexv2/components/widgets/pokemon_sprite.dart';
 import 'package:pokedexv2/Static/text_styles.dart';
+import 'package:pokedexv2/components/widgets/pokemon_type_card.dart';
 import 'package:pokedexv2/models/pokemon_summary_model.dart';
 import 'package:pokedexv2/utils/text_utils.dart';
 
@@ -14,12 +14,12 @@ class PokemonCard extends StatelessWidget {
       : super(key: key);
 
   List<Widget> pokemonTypeButton(List<String>? summaryTypes) {
-    List<Widget> buttons = [];
+    List<Widget> typeCards = [];
 
     for (int i = 0; i < summaryTypes!.length; i++) {
-      buttons.add(PokemonTypeCard(pokemonTypes: summaryTypes, index: i));
+      typeCards.add(PokemonTypeCard(pokemonTypes: summaryTypes, index: i));
     }
-    return buttons;
+    return typeCards;
   }
 
   @override
@@ -28,7 +28,11 @@ class PokemonCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "pokemonPage", arguments: index);
+        Navigator.pushNamed(
+          context,
+          "pokemonPage",
+          arguments: index,
+        );
       },
       child: Stack(
         children: <Widget>[
@@ -40,7 +44,7 @@ class PokemonCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: PokemonColors()
-                  .pokemonCardColor(type: pokemon.types.first.toLowerCase())!,
+                  .pokemonCardColor(type: pokemon.types.first.toLowerCase()),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
