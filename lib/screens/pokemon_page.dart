@@ -1,8 +1,15 @@
-import 'dart:ui';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pokedexv2/components/animations/pokeball_spin.dart';
+import 'package:pokedexv2/components/widgets/arrow_back.dart';
+import 'package:pokedexv2/components/widgets/pokemon_panel.dart';
+import 'package:pokedexv2/components/widgets/pokemon_sprite.dart';
+import 'package:pokedexv2/models/pokemon_description_model.dart';
 import 'package:pokedexv2/models/pokemon_model.dart';
 import 'package:pokedexv2/models/specie_model.dart';
 import 'package:pokedexv2/services/pokemon_infos.dart';
+import 'package:pokedexv2/static/pokemon_colors.dart';
 
 class PokemonPage extends StatefulWidget {
   final int index;
@@ -14,18 +21,14 @@ class PokemonPage extends StatefulWidget {
 
 class _PokemonPageState extends State<PokemonPage>
     with TickerProviderStateMixin {
-  late AnimationController _controller;
   bool isLoading = false;
   late PokemonSpecieModel specieInfo;
   late PokemonModel pokemonInfo;
+  late PokemonDescriptionModel pokemonDescription;
 
   @override
   void initState() {
     getSpecieInfo();
-    _controller = AnimationController(
-      duration: const Duration(seconds: 3),
-      vsync: this,
-    )..repeat();
     super.initState();
   }
 
@@ -40,6 +43,12 @@ class _PokemonPageState extends State<PokemonPage>
         await PokemonService().getPokemon(widget.index + 1);
     pokemonInfo = PokemonModel.fromJson(pokemonResponse);
 
+    String jsonResponse =
+        await rootBundle.loadString("assets/jsons/pokemon_descriptions.json");
+    List pokemonDescriptionResponse = await json.decode(jsonResponse);
+    pokemonDescription = PokemonDescriptionModel.fromJson(
+        pokemonDescriptionResponse[widget.index]);
+
     setState(() {
       isLoading = false;
     });
@@ -52,11 +61,17 @@ class _PokemonPageState extends State<PokemonPage>
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.blue.shade900,
-              Colors.blue.shade300,
+              PokemonColors().pokemonTypeColor(
+                type: pokemonInfo.types!.first.type!.name.toString(),
+              ),
+              PokemonColors()
+                  .pokemonCardColor(
+                    type: pokemonInfo.types!.first.type!.name.toString(),
+                  )
+                  .withOpacity(0.6)
             ],
             stops: const [
-              0.0,
+              0.2,
               0.8,
             ],
             begin: Alignment.centerLeft,
@@ -65,59 +80,32 @@ class _PokemonPageState extends State<PokemonPage>
         ),
         child: SafeArea(
           child: Stack(children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.05),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: RotationTransition(
-                  turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-                  child: Image.asset(
-                    "assets/images/background-pokeball.png",
-                    cacheWidth: 180,
-                    opacity: AlwaysStoppedAnimation<double>(0.1),
-                  ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.17,
+              left: 0,
+              right: 0,
+              child: PokeballSpinAnimation(),
+            ),
+            PokemonPanelWidget(
+              pokeInfo: pokemonInfo,
+              specieInfo: specieInfo,
+              pokemonDescription: pokemonDescription,
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.112,
+              left: 0,
+              right: 0,
+              child: SizedBox(
+                width: 200,
+                height: 200,
+                child: PokemonSpriteWidget(
+                  imageUrl: pokemonInfo
+                      .sprites!.other!.officialArtwork!.frontDefault!,
+                  defaultImageUrl: "assets/images/pokeball.png",
                 ),
               ),
             ),
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 3,
-                sigmaY: 3,
-              ),
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.white.withOpacity(0.1),
-                      Colors.white.withOpacity(0.05),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: Container(
-                  margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.3),
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(50)),
-                  ),
-                  // child: Text(pokemon.name),
-                ),
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-            ),
+            ArrowBack(),
           ]),
         ),
       ),
@@ -126,7 +114,6 @@ class _PokemonPageState extends State<PokemonPage>
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
   }
 }
