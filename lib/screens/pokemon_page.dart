@@ -81,7 +81,7 @@ class _PokemonPageState extends State<PokemonPage>
         child: SafeArea(
           child: Stack(children: [
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.17,
+              top: MediaQuery.of(context).size.height * 0.12,
               left: 0,
               right: 0,
               child: PokeballSpinAnimation(),
@@ -92,8 +92,8 @@ class _PokemonPageState extends State<PokemonPage>
               pokemonDescription: pokemonDescription,
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.112,
-              left: 0,
+              top: MediaQuery.of(context).size.height * 0.06,
+              left: 5,
               right: 0,
               child: SizedBox(
                 width: 200,
@@ -105,7 +105,7 @@ class _PokemonPageState extends State<PokemonPage>
                 ),
               ),
             ),
-            ArrowBack(),
+            ArrowBack(streamController.stream),
           ]),
         ),
       ),
