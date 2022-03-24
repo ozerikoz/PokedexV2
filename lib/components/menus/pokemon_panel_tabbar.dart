@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pokedexv2/components/menus/pokemon_details.dart';
+import 'package:pokedexv2/components/widgets/arrow_back.dart';
 import 'package:pokedexv2/static/pokemon_colors.dart';
 import 'package:pokedexv2/static/text_styles.dart';
 
