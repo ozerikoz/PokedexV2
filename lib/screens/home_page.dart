@@ -45,13 +45,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     for (int i = 0; i < summaryData.length; i++) {
       pokeListData.add(summaryData[i]);
     }
-    orderByDescending
-        ? pokeListData.sort(
-            (b, a) => (a["number"].compareTo(b["number"])),
-          )
-        : pokeListData.sort(
-            (b, a) => (b["number"].compareTo(a["number"])),
-          );
 
     return pokeListData;
   }
@@ -205,6 +198,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               physics: BouncingScrollPhysics(),
                               itemCount: snapshot.data.length,
                               itemBuilder: (context, index) {
+                                if (orderByDescending) {
+                                  index = snapshot.data.length - 1 - index;
+                                }
                                 return PokemonCard(
                                   pokeInfo: snapshot.data[index],
                                   index: index,
