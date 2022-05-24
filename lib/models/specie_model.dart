@@ -75,7 +75,9 @@ class PokemonSpecieModel {
     genera = List.from(json['genera']).map((e) => Genera.fromJson(e)).toList();
     generation = Generation.fromJson(json['generation']);
     growthRate = GrowthRate.fromJson(json['growth_rate']);
-    habitat = Habitat.fromJson(json['habitat']);
+    json['habitat'] != null
+        ? habitat = Habitat.fromJson(json['habitat'])
+        : null;
     hasGenderDifferences = json['has_gender_differences'];
     hatchCounter = json['hatch_counter'];
     id = json['id'];
@@ -91,7 +93,7 @@ class PokemonSpecieModel {
     pokedexNumbers = List.from(json['pokedex_numbers'])
         .map((e) => PokedexNumbers.fromJson(e))
         .toList();
-    shape = Shape.fromJson(json['shape']);
+    json["shape"] != null ? shape = Shape.fromJson(json['shape']) : null;
     varieties =
         List.from(json['varieties']).map((e) => Varieties.fromJson(e)).toList();
   }
