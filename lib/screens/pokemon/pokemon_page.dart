@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pokedexv2/components/animations/pokeball_spin.dart';
-import 'package:pokedexv2/components/widgets/arrow_back.dart';
-import 'package:pokedexv2/components/widgets/pokemon_panel.dart';
+import 'package:pokedexv2/screens/pokemon/components/pokeball_spin.dart';
+import 'package:pokedexv2/screens/pokemon/components/pokemon_panel.dart';
 import 'package:pokedexv2/components/widgets/pokemon_sprite.dart';
 import 'package:pokedexv2/models/pokemon_description_model.dart';
 import 'package:pokedexv2/models/pokemon_model.dart';
@@ -105,7 +104,6 @@ class _PokemonPageState extends State<PokemonPage>
                 ),
               ),
             ),
-            ArrowBack(streamController.stream),
           ]),
         ),
       ),

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pokedexv2/components/menus/pokemon_details.dart';
-import 'package:pokedexv2/components/widgets/arrow_back.dart';
+import 'package:pokedexv2/screens/pokemon/components/pokemon_details.dart';
 import 'package:pokedexv2/static/pokemon_colors.dart';
 import 'package:pokedexv2/static/text_styles.dart';
 
@@ -43,7 +42,6 @@ class _PokemonPanelTabBarState extends State<PokemonPanelTabBar>
         height: 42,
         child: TabBar(
           onTap: ((value) {
-            streamController.add(true);
             pokemonPanelMenu(index: widget.initialIndex);
           }),
           controller: tabController,
@@ -110,7 +108,6 @@ class _PokemonPanelTabBarState extends State<PokemonPanelTabBar>
       builder: (context) {
         return WillPopScope(
           onWillPop: () {
-            streamController.add(false);
             return Future.value(true);
           },
           child: PokemonTabDetail(

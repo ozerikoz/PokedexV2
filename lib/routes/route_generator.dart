@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedexv2/screens/home_page.dart';
-import 'package:pokedexv2/screens/pokemon_page.dart';
+import 'package:pokedexv2/screens/home/home_page.dart';
+import 'package:pokedexv2/screens/pokemon/pokemon_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

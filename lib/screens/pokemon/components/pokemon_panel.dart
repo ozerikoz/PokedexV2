@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedexv2/components/menus/pokemon_panel_tabbar.dart';
+import 'package:pokedexv2/screens/pokemon/components/pokemon_panel_tabbar.dart';
 import 'package:pokedexv2/components/widgets/pokemon_type_button.dart';
 import 'package:pokedexv2/models/pokemon_description_model.dart';
 import 'package:pokedexv2/models/pokemon_model.dart';
