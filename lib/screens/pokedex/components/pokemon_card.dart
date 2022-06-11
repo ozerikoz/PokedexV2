@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pokedexv2/Static/pokemon_colors.dart';
 import 'package:pokedexv2/components/widgets/pokemon_sprite.dart';
 import 'package:pokedexv2/Static/text_styles.dart';
-import 'package:pokedexv2/screens/home/components/pokemon_type_card.dart';
 import 'package:pokedexv2/models/pokemon_summary_model.dart';
+import 'package:pokedexv2/screens/pokedex/components/pokemon_type_card.dart';
 import 'package:pokedexv2/utils/text_utils.dart';
 
 class PokemonCard extends StatelessWidget {
@@ -17,7 +17,12 @@ class PokemonCard extends StatelessWidget {
     List<Widget> typeCards = [];
 
     for (int i = 0; i < summaryTypes!.length; i++) {
-      typeCards.add(PokemonTypeCard(pokemonTypes: summaryTypes, index: i));
+      typeCards.add(
+        PokemonTypeCard(
+          pokemonTypes: summaryTypes,
+          index: i,
+        ),
+      );
     }
     return typeCards;
   }

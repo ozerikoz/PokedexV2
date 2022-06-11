@@ -69,6 +69,7 @@ flutter:
     - assets/animations/
     - assets/icons/
     - assets/icons/pokemon_types/
+    - assets/icons/bottom_app_bar/
     - assets/images/
     - assets/jsons/
 

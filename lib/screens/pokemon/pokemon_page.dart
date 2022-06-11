@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pokedexv2/components/loading/loading_screen.dart';
 import 'package:pokedexv2/screens/pokemon/components/pokeball_spin.dart';
 import 'package:pokedexv2/screens/pokemon/components/pokemon_panel.dart';
 import 'package:pokedexv2/components/widgets/pokemon_sprite.dart';
@@ -56,57 +57,59 @@ class _PokemonPageState extends State<PokemonPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              PokemonColors().pokemonTypeColor(
-                type: pokemonInfo.types!.first.type!.name.toString(),
-              ),
-              PokemonColors()
-                  .pokemonCardColor(
-                    type: pokemonInfo.types!.first.type!.name.toString(),
-                  )
-                  .withOpacity(0.6)
-            ],
-            stops: const [
-              0.2,
-              0.8,
-            ],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ),
-        ),
-        child: SafeArea(
-          child: Stack(children: [
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.12,
-              left: 0,
-              right: 0,
-              child: PokeballSpinAnimation(),
-            ),
-            PokemonPanelWidget(
-              pokeInfo: pokemonInfo,
-              specieInfo: specieInfo,
-              pokemonDescription: pokemonDescription,
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.06,
-              left: 5,
-              right: 0,
-              child: SizedBox(
-                width: 200,
-                height: 200,
-                child: PokemonSpriteWidget(
-                  imageUrl: pokemonInfo
-                      .sprites!.other!.officialArtwork!.frontDefault!,
-                  defaultImageUrl: "assets/images/pokeball.png",
+      body: isLoading
+          ? LoadingScreen()
+          : Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    PokemonColors().pokemonTypeColor(
+                      type: pokemonInfo.types!.first.type!.name.toString(),
+                    ),
+                    PokemonColors()
+                        .pokemonCardColor(
+                          type: pokemonInfo.types!.first.type!.name.toString(),
+                        )
+                        .withOpacity(0.6)
+                  ],
+                  stops: const [
+                    0.2,
+                    0.8,
+                  ],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
                 ),
               ),
+              child: SafeArea(
+                child: Stack(children: [
+                  Positioned(
+                    top: MediaQuery.of(context).size.height * 0.12,
+                    left: 0,
+                    right: 0,
+                    child: PokeballSpinAnimation(),
+                  ),
+                  PokemonPanelWidget(
+                    pokeInfo: pokemonInfo,
+                    specieInfo: specieInfo,
+                    pokemonDescription: pokemonDescription,
+                  ),
+                  Positioned(
+                    top: MediaQuery.of(context).size.height * 0.06,
+                    left: 5,
+                    right: 0,
+                    child: SizedBox(
+                      width: 200,
+                      height: 200,
+                      child: PokemonSpriteWidget(
+                        imageUrl: pokemonInfo
+                            .sprites!.other!.officialArtwork!.frontDefault!,
+                        defaultImageUrl: "assets/images/pokeball.png",
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
             ),
-          ]),
-        ),
-      ),
     );
   }
 
