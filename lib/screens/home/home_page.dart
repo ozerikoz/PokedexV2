@@ -4,7 +4,7 @@ import 'package:pokedexv2/components/menu/menu.dart';
 import 'package:pokedexv2/components/widgets/searchbar.dart';
 import 'package:pokedexv2/screens/pokemon_list/pokemon_list.dart';
 import 'package:pokedexv2/screens/splash_page.dart';
-import 'package:pokedexv2/screens/types/types_list.dart';
+import 'package:pokedexv2/screens/types_list/types_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
