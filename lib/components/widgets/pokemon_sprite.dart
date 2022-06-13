@@ -10,9 +10,9 @@ class PokemonSpriteWidget extends StatelessWidget {
   const PokemonSpriteWidget({
     Key? key,
     required this.imageUrl,
-    this.imageWidth = 125,
+    this.imageWidth = 60,
     required this.defaultImageUrl,
-    this.defaultImageWidth = 80,
+    this.defaultImageWidth = 60,
   }) : super(key: key);
 
   @override

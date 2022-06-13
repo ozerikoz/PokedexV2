@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedexv2/constants/pokemon_constants.dart';
 import 'package:pokedexv2/static/pokemon_colors.dart';
-import 'package:pokedexv2/static/text_styles.dart';
-import 'package:pokedexv2/utils/text_utils.dart';
 
 class PokemonTypeCard extends StatelessWidget {
   final List<String> pokemonTypes;
@@ -15,30 +13,53 @@ class PokemonTypeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      margin: EdgeInsets.only(right: index == 0 ? 10 : 0),
-      color: PokemonColors()
-          .pokemonTypeColor(type: pokemonTypes[index].toLowerCase()),
-      child: Padding(
-        padding: EdgeInsets.all(4),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              PokemonConstants().pokemonTypeUrl +
-                  "${pokemonTypes[index].toLowerCase()}.svg",
-              width: 15,
+    return Padding(
+      padding: EdgeInsets.only(left: index == 1 ? 20 : 0),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(50),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: PokemonColors()
+                      .pokemonTypeColor(type: pokemonTypes[index].toLowerCase())
+                      .withOpacity(0.6),
+                  blurRadius: 5,
+                ),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 5),
-              child: Text(
-                TextUtils().textCapitalize(pokemonTypes[index]),
-                style: TextStyles().fontStyleRegular(12, Colors.white),
+          ),
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  PokemonColors().pokemonTypeColor(
+                      type: pokemonTypes[index].toLowerCase()),
+                  PokemonColors()
+                      .pokemonTypeColor(type: pokemonTypes[index].toLowerCase())
+                      .withOpacity(0.8)
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(50),
               ),
             ),
-          ],
-        ),
+            child: SvgPicture.asset(
+              PokemonConstants().pokemonTypeUrl +
+                  "${pokemonTypes[index].toLowerCase()}.svg",
+              width: 16,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -39,50 +39,58 @@ class PokemonCard extends StatelessWidget {
           arguments: index,
         );
       },
-      child: Stack(
-        children: <Widget>[
-          Container(
-            margin:
-                const EdgeInsets.only(left: 30, right: 30, bottom: 10, top: 20),
-            padding: const EdgeInsets.all(20),
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: PokemonColors()
-                  .pokemonCardColor(type: pokemon.types.first.toLowerCase()),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.grey,
+              width: 1,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
               children: [
-                Text(
-                  "#${pokemon.number}",
-                  style: TextStyles().fontStyleBold(12, Colors.black54),
+                PokemonSpriteWidget(
+                  imageUrl: pokemon.imageUrl,
+                  defaultImageUrl: "assets/images/pokeball.png",
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Text(
-                    TextUtils().textCapitalize(
-                      pokemon.name.toString(),
-                    ),
-                    strutStyle: StrutStyle(forceStrutHeight: true),
-                    style: TextStyles().fontStyleBold(22, Colors.white),
-                  ),
+                  padding: EdgeInsets.only(right: 15),
                 ),
-                Row(
-                  children: pokemonTypeButton(pokemon.types),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Text(
+                        TextUtils().textCapitalize(
+                          pokemon.name.toString(),
+                        ),
+                        strutStyle: StrutStyle(forceStrutHeight: true),
+                        style: TextStyles().fontStyleRegular(16, Colors.black),
+                      ),
+                    ),
+                    Text(
+                      "#${pokemon.number}",
+                      style: TextStyles().fontStyleLight(12, Colors.black54),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-          Positioned(
-              top: 0,
-              bottom: 0,
-              right: 40,
-              child: PokemonSpriteWidget(
-                  imageUrl: pokemon.imageUrl,
-                  defaultImageUrl: "assets/images/pokeball.png")),
-        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: pokemonTypeButton(pokemon.types),
+            ),
+          ],
+        ),
       ),
     );
   }
