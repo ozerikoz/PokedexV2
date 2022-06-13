@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
-class TypeList extends StatefulWidget {
-  const TypeList({Key? key}) : super(key: key);
+class ItemList extends StatefulWidget {
+  const ItemList({Key? key}) : super(key: key);
 
   @override
-  State<TypeList> createState() => _TypeListState();
+  State<ItemList> createState() => _ItemListState();
 }
 
-class _TypeListState extends State<TypeList> {
+class _ItemListState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

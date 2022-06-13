@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pokedexv2/components/menu/menu.dart';
 import 'package:pokedexv2/components/widgets/searchbar.dart';
+import 'package:pokedexv2/screens/home/item_list.dart';
 import 'package:pokedexv2/screens/pokemon_list/pokemon_list.dart';
 import 'package:pokedexv2/screens/splash_page.dart';
-import 'package:pokedexv2/screens/types_list/types_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -55,9 +55,9 @@ class _HomePageState extends State<HomePage> {
                   physics: NeverScrollableScrollPhysics(),
                   children: const [
                     PokemonList(),
-                    TypeList(),
                     Icon(Icons.access_time_filled_rounded),
                     Icon(Icons.add_a_photo_outlined),
+                    ItemList(),
                   ],
                 ),
                 SearchBar(),
