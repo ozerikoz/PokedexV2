@@ -46,7 +46,7 @@ class _HomeMenuState extends State<HomeMenu> {
             icon: "assets/icons/bottom_app_bar/items.svg",
             text: "items",
             changeIndex: widget.onTap,
-            index: 2,
+            index: 3,
           )
         ],
       ),

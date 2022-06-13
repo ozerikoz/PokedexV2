@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pokedexv2/screens/pokemon/components/pokemon_panel_tabbar.dart';
 import 'package:pokedexv2/components/widgets/pokemon_type_button.dart';
 import 'package:pokedexv2/models/pokemon_description_model.dart';
 import 'package:pokedexv2/models/pokemon_model.dart';
 import 'package:pokedexv2/models/specie_model.dart';
+import 'package:pokedexv2/screens/pokemon_details/components/pokemon_panel_tabbar.dart';
 import 'package:pokedexv2/static/text_styles.dart';
 import 'package:pokedexv2/utils/text_utils.dart';
 

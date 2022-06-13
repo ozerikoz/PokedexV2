@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pokedexv2/screens/pokedex/components/pokemon_card.dart';
+import 'package:pokedexv2/screens/pokemon_list/components/pokemon_card.dart';
 
 class PokemonList extends StatefulWidget {
   const PokemonList({Key? key}) : super(key: key);

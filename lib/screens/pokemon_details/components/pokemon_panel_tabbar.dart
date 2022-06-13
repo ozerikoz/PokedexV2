@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pokedexv2/screens/pokemon/components/pokemon_details.dart';
+import 'package:pokedexv2/screens/pokemon_details/components/pokemon_details.dart';
 import 'package:pokedexv2/static/pokemon_colors.dart';
 import 'package:pokedexv2/static/text_styles.dart';
 

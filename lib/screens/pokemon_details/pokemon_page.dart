@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pokedexv2/components/loading/loading_screen.dart';
-import 'package:pokedexv2/screens/pokemon/components/pokeball_spin.dart';
-import 'package:pokedexv2/screens/pokemon/components/pokemon_panel.dart';
 import 'package:pokedexv2/components/widgets/pokemon_sprite.dart';
 import 'package:pokedexv2/models/pokemon_description_model.dart';
 import 'package:pokedexv2/models/pokemon_model.dart';
 import 'package:pokedexv2/models/specie_model.dart';
+import 'package:pokedexv2/screens/pokemon_details/components/pokeball_spin.dart';
+import 'package:pokedexv2/screens/pokemon_details/components/pokemon_panel.dart';
 import 'package:pokedexv2/services/pokemon_infos.dart';
 import 'package:pokedexv2/static/pokemon_colors.dart';
 
