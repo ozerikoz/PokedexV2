@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:pokedexv2/services/base.dart';
 
-class ItemService extends PokemonServiceBase {
-  Future getItems(int offSet) async {
+class MoveService extends PokemonServiceBase {
+  Future getMoves(int offSet) async {
     Response response = await Dio().get(
-      PokemonServiceBase().apiUrl + "/item/",
+      PokemonServiceBase().apiUrl + "/move/",
       queryParameters: {
         "offset": offSet,
       },
@@ -16,7 +16,7 @@ class ItemService extends PokemonServiceBase {
     return jsonResponse;
   }
 
-  Future getItemInfo(String url) async {
+  Future getMoveInfo(String url) async {
     Response response = await Dio().get(url);
 
     Map jsonResponse = json.decode(response.toString());

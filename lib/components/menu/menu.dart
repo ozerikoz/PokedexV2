@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pokedexv2/components/menu/components/buttons.dart';
 
 class HomeMenu extends StatefulWidget {
+  final int? pageIndex;
   final ValueChanged<int> onTap;
 
   const HomeMenu({
     Key? key,
+    this.pageIndex,
     required this.onTap,
   }) : super(key: key);
 
@@ -25,28 +27,25 @@ class _HomeMenuState extends State<HomeMenu> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           MenuButton(
-            icon: "assets/icons/bottom_app_bar/pokeball.svg",
-            text: "pokemons",
+            icon: "assets/icons/bottom_app_bar/pokeball.png",
+            text: "Pokemons",
             changeIndex: widget.onTap,
             index: 0,
+            pageIndex: widget.pageIndex,
           ),
           MenuButton(
-            icon: "assets/icons/bottom_app_bar/types.svg",
-            text: "types",
+            icon: "assets/icons/bottom_app_bar/moves.png",
+            text: "Moves",
             changeIndex: widget.onTap,
             index: 1,
+            pageIndex: widget.pageIndex,
           ),
           MenuButton(
-            icon: "assets/icons/bottom_app_bar/battle.svg",
-            text: "abilities",
+            icon: "assets/icons/bottom_app_bar/items.png",
+            text: "Items",
             changeIndex: widget.onTap,
             index: 2,
-          ),
-          MenuButton(
-            icon: "assets/icons/bottom_app_bar/items.svg",
-            text: "items",
-            changeIndex: widget.onTap,
-            index: 3,
+            pageIndex: widget.pageIndex,
           )
         ],
       ),

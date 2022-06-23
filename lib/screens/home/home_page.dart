@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pokedexv2/components/menu/menu.dart';
 import 'package:pokedexv2/components/widgets/searchbar.dart';
-import 'package:pokedexv2/screens/home/item_list.dart';
+import 'package:pokedexv2/screens/item_list/item_list.dart';
+import 'package:pokedexv2/screens/move_list/move_list.dart';
 import 'package:pokedexv2/screens/pokemon_list/pokemon_list.dart';
 import 'package:pokedexv2/screens/splash_page.dart';
 
@@ -15,7 +16,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isLoading = false;
-  final PageController _pageController = PageController();
+  int pageIndex = 0;
+  late PageController _pageController = PageController();
 
   @override
   void initState() {
@@ -24,6 +26,15 @@ class _HomePageState extends State<HomePage> {
     Future.delayed(const Duration(milliseconds: 1600), () {
       setState(() {
         isLoading = false;
+      });
+    });
+
+    _pageController = PageController(initialPage: 0, keepPage: true);
+    _pageController.addListener(() {
+      Future.delayed(Duration(milliseconds: 85), () {
+        setState(() {
+          pageIndex = _pageController.page!.toInt();
+        });
       });
     });
     super.initState();
@@ -39,7 +50,23 @@ class _HomePageState extends State<HomePage> {
           opacity: isLoading ? 0.0 : 1.0,
           duration: Duration(milliseconds: 1000),
           child: Scaffold(
+            body: Stack(
+              children: [
+                PageView(
+                  controller: _pageController,
+                  allowImplicitScrolling: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: const [
+                    PokemonList(),
+                    MoveList(),
+                    ItemList(),
+                  ],
+                ),
+                SearchBar(),
+              ],
+            ),
             bottomNavigationBar: HomeMenu(
+              pageIndex: pageIndex,
               onTap: (newIndex) {
                 _pageController.animateToPage(
                   newIndex,
@@ -47,21 +74,6 @@ class _HomePageState extends State<HomePage> {
                   curve: Curves.linear,
                 );
               },
-            ),
-            body: Stack(
-              children: [
-                PageView(
-                  controller: _pageController,
-                  physics: NeverScrollableScrollPhysics(),
-                  children: const [
-                    PokemonList(),
-                    Icon(Icons.access_time_filled_rounded),
-                    Icon(Icons.add_a_photo_outlined),
-                    ItemList(),
-                  ],
-                ),
-                SearchBar(),
-              ],
             ),
           ),
         ),

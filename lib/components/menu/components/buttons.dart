@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedexv2/Static/text_styles.dart';
 
 class MenuButton extends StatelessWidget {
+  final int? pageIndex;
   final String icon;
   final String text;
   final ValueChanged<int> changeIndex;
@@ -14,6 +14,7 @@ class MenuButton extends StatelessWidget {
     required this.text,
     required this.changeIndex,
     required this.index,
+    required this.pageIndex,
   }) : super(key: key);
 
   @override
@@ -28,13 +29,17 @@ class MenuButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SvgPicture.asset(
+            Image.asset(
               icon,
               width: 24,
+              cacheWidth: 24,
             ),
+            const Padding(padding: EdgeInsets.only(bottom: 4)),
             Text(
-              text.toUpperCase(),
-              style: TextStyles().fontStyleLight(12, Colors.black),
+              text,
+              style: pageIndex == index
+                  ? TextStyles().fontStyleBold(12, Colors.black)
+                  : TextStyles().fontStyleLight(12, Colors.black),
             ),
           ],
         ),

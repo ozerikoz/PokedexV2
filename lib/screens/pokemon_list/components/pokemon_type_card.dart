@@ -19,8 +19,8 @@ class PokemonTypeCard extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            height: 40,
-            width: 40,
+            height: 35,
+            width: 35,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(50),
@@ -36,7 +36,7 @@ class PokemonTypeCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
@@ -56,7 +56,7 @@ class PokemonTypeCard extends StatelessWidget {
             child: SvgPicture.asset(
               PokemonConstants().pokemonTypeUrl +
                   "${pokemonTypes[index].toLowerCase()}.svg",
-              width: 16,
+              width: 14,
             ),
           ),
         ],
