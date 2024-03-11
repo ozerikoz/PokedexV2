@@ -1,1 +1,1 @@
-Project in progress!
+Project paused!
